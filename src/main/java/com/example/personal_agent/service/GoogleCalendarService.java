@@ -29,7 +29,9 @@ public class GoogleCalendarService {
                 .build();
     }
 
-    // Lấy lịch bận
+    /**
+     * Lấy danh sách các khoảng thời gian BẬN
+     */
     public List<TimePeriod> getBusySlots(String accessToken, ZonedDateTime start, ZonedDateTime end) {
         try {
             com.google.api.client.auth.oauth2.Credential credential = createCredential(accessToken);
@@ -43,11 +45,21 @@ public class GoogleCalendarService {
             FreeBusyResponse response = service.freebusy().query(request).execute();
 
             List<TimePeriod> busySlots = new ArrayList<>();
-            for (FreeBusyCalendar  calendar : response.getCalendars().values()) {
-                if (calendar.getBusy() != null) {
-                    busySlots.addAll(calendar.getBusy());
+
+            // --- PHẦN SỬA LỖI Ở ĐÂY ---
+            // response.getCalendars() trả về Map<String, FreeBusyCalendar>
+            // Không phải BusyCalendars
+            Map<String, FreeBusyCalendar> calendars = response.getCalendars();
+
+            if (calendars != null) {
+                for (FreeBusyCalendar calendar : calendars.values()) {
+                    if (calendar.getBusy() != null) {
+                        busySlots.addAll(calendar.getBusy());
+                    }
                 }
             }
+            // ---------------------------
+
             return busySlots;
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,7 +67,9 @@ public class GoogleCalendarService {
         }
     }
 
-    // Tạo sự kiện
+    /**
+     * Tạo sự kiện mới
+     */
     public String createEvent(String accessToken, String title, ZonedDateTime start, ZonedDateTime end) {
         try {
             com.google.api.client.auth.oauth2.Credential credential = createCredential(accessToken);
