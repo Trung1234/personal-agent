@@ -4,9 +4,9 @@
 
 <mapper namespace="com.aiagent.mapper.SubTaskMapper">
 
-    <insert id="insert" parameterType="com.aiagent.model.SubTask">
+    <insert id="insert" parameterType="com.example.personal_agent.model.SubTask">
         INSERT INTO SubTasks (task_id, title, is_completed, display_order)
         VALUES (#{taskId}, #{title}, #{isCompleted}, #{displayOrder})
     </insert>
 
-</mapper>s
+</mapper>

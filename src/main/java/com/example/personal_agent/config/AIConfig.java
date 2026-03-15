@@ -13,8 +13,8 @@ public class AIConfig {
         // Sử dụng GoogleGenAiChatOptions thay vì GeminiChatOptions
         return builder.defaultOptions(
                 GoogleGenAiChatOptions.builder()
-                        .temperature(0.7) // Điều chỉnh độ sáng tạo (0.0 - 1.0)
-                        .model("gemini-pro") // Chỉ định rõ model (tùy chọn)
+                        .temperature(0.7)
+                        .model("gemini-1.5-pro")
                         .build()
         ).build();
     }

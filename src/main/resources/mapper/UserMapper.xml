@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aiagent.mapper.UserMapper">
+
+    <select id="findByEmail" resultType="com.example.personal_agent.model.User">
+        SELECT * FROM Users WHERE email = #{email}
+    </select>
+
+    <insert id="insert" parameterType="com.example.personal_agent.model.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Users (email, name, google_id, avatar_url, created_at)
+        VALUES (#{email}, #{name}, #{googleId}, #{avatarUrl}, GETDATE())
+    </insert>
+
+</mapper>

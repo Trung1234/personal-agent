@@ -4,9 +4,9 @@
 
 <mapper namespace="com.aiagent.mapper.ScheduleMapper">
 
-    <insert id="insert" parameterType="com.aiagent.model.Schedule">
+    <insert id="insert" parameterType="com.example.personal_agent.model.Schedule">
         INSERT INTO Schedules (task_id, subtask_id, title, start_time, end_time, google_event_id, location)
         VALUES (#{taskId}, #{subtaskId}, #{title}, #{startTime}, #{endTime}, #{googleEventId}, #{location})
     </insert>
 
-</mapper>s
+</mapper>
