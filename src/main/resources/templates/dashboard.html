@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard - AI Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #f4f6f9; }
+        .navbar { background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card-custom { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: 0.3s; }
+        .card-custom:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .time-badge { background: #e8f0fe; color: #1967d2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; }
+        .fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #4285F4, #34A853); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4); text-decoration: none; z-index: 1000; }
+    </style>
 </head>
 <body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#"><i class="fas fa-robot text-primary"></i> AI Agent</a>
+        <div class="d-flex align-items-center">
+            <span class="me-3 text-muted" th:text="${#authentication.name}">user@gmail.com</span>
+            <img src="https://via.placeholder.com/35" class="rounded-circle" alt="Avatar">
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Cột trái: Lịch hôm nay -->
+        <div class="col-md-8 mb-4">
+            <div class="card card-custom p-4 h-100">
+                <h5 class="card-title fw-bold mb-4"><i class="far fa-calendar-alt text-primary"></i> Lịch trình hôm nay</h5>
+
+                <!-- Loop lịch trình (Demo data) -->
+                <div class="d-flex mb-3 border-start border-4 border-primary ps-3">
+                    <div class="me-3">
+                        <div class="time-badge">09:00</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-1">Họp Team Weekly</h6>
+                        <small class="text-muted">Google Meet • 1 giờ</small>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-3 border-start border-4 border-success ps-3">
+                    <div class="me-3">
+                        <div class="time-badge" style="background:#e6f4ea; color:#137333;">14:00</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-1">Học tiếng Nhật (AI Plan)</h6>
+                        <small class="text-success"><i class="fas fa-check-circle"></i> Đã đồng bộ</small>
+                    </div>
+                </div>
+
+                <div th:if="${upcomingSchedules == null or #lists.isEmpty(upcomingSchedules)}" class="text-center text-muted py-4">
+                    <i class="fas fa-coffee fa-2x mb-2"></i>
+                    <p>Hôm nay bạn rỗi rảnh!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột phải: Việc cần làm -->
+        <div class="col-md-4">
+            <div class="card card-custom p-4 h-100">
+                <h5 class="card-title fw-bold mb-4"><i class="fas fa-tasks text-warning"></i> Việc cần làm</h5>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" checked id="task1">
+                    <label class="form-check-label text-decoration-line-through text-muted" for="task1">Trả lời email khách hàng</label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="task2">
+                    <label class="form-check-label" for="task2">Review code dự án E-com</label>
+                </div>
+
+                <hr>
+                <a href="/tasks/new" class="btn btn-outline-primary w-100">Xem tất cả task</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nút tạo mới -->
+<a href="/tasks/new" class="fab" title="Tạo kế hoạch mới">
+    <i class="fas fa-plus"></i>
+</a>
 
 </body>
 </html>
