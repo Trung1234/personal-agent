@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.aiagent.mapper.SubTaskMapper">
+<mapper namespace="com.example.personal_agent.repository.SubTaskMapper">
 
     <insert id="insert" parameterType="com.example.personal_agent.model.SubTask">
         INSERT INTO SubTasks (task_id, title, is_completed, display_order)
