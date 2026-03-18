@@ -11,7 +11,7 @@
     <insert id="insert" parameterType="com.example.personal_agent.model.User"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO Users (email, name, google_id, avatar_url, created_at)
-        VALUES (#{email}, #{name}, #{googleId}, #{avatarUrl}, GETDATE())
+        VALUES (#{email}, #{name}, #{googleId}, #{avatarUrl}, NOW())
     </insert>
 
 </mapper>

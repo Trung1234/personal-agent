@@ -7,7 +7,7 @@
     <insert id="insert" parameterType="com.example.personal_agent.model.Task"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO Tasks (user_id, description, status, created_at, updated_at)
-        VALUES (#{userId}, #{description}, #{status}, GETDATE(), GETDATE())
+        VALUES (#{userId}, #{description}, #{status}, NOW(), NOW())
     </insert>
 
     <select id="findById" resultType="com.example.personal_agent.model.Task">
