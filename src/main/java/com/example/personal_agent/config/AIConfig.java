@@ -14,7 +14,7 @@ public class AIConfig {
         return builder.defaultOptions(
                 GoogleGenAiChatOptions.builder()
                         .temperature(0.7)
-                        .model("gemini-1.5-pro")
+                        .model("gemini-2.5-flash")
                         .build()
         ).build();
     }

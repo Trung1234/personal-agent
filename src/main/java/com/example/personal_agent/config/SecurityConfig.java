@@ -14,21 +14,22 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        // === QUAN TRỌNG: Phải có "/login" trong danh sách này ===
-                        .requestMatchers("/login", "/error", "/webjars/**", "/css/**", "/js/**").permitAll()
-                        // ======================================================
+                        .requestMatchers("/login", "/error", "/webjars/**", "/css/**", "/js/**",
+                                 "/tasks/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
                         .defaultSuccessUrl("/dashboard", true)
                 )
-                // ... phần logout giữ nguyên
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
-                );
+                )
+                // --- THÊM DÒNG NÀY ĐỂ TẮT CSRF TẠM THỜI ---
+                .csrf(csrf -> csrf.disable());
+        // -----------------------------------------
 
         return http.build();
     }
