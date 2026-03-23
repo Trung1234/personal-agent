@@ -49,7 +49,7 @@ Backend: Java 17, Spring Boot 3.5.x (Snapshot).
 
 AI: Spring AI (Gemini  AI).
 
-Persistence: MyBatis, SQL Server (mssql-jdbc).
+Persistence: MyBatis, postgre sql
 
 Integration: Google Calendar API (OAuth 2.0).
 
